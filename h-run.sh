@@ -22,4 +22,4 @@ CUSTOM_LOG_BASEDIR=`dirname "$CUSTOM_LOG_BASENAME"`
 [[ ! -d $CUSTOM_LOG_BASEDIR ]] && mkdir -p $CUSTOM_LOG_BASEDIR
 
 
-./excavator $(< /hive/custom/$CUSTOM_NAME/$CUSTOM_NAME.conf) $@ 2>&1 | tee $CUSTOM_LOG_BASENAME.log
+date.sh && ./excavator $(< /hive/custom/$CUSTOM_NAME/$CUSTOM_NAME.conf) $@ 2>&1 | tee $CUSTOM_LOG_BASENAME.log
