@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo `date` > /var/log/miner/excavator/excavator.date.log
+date > /var/log/miner/excavator/excavator.date.log 2>@1 | tee excavator.date.log
