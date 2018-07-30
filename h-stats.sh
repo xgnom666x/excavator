@@ -31,8 +31,24 @@ get_miner_uptime(){
 
 get_total_hashes(){
         # khs is global
-        local Total=`cat $LOG_NAME | grep -a "speed" | tail -n 1 | awk '{ printf $7*1000"\n" }'`
-        echo $Total
+ 	 local speed=`cat $LOG_NAME | grep -a "speed" | tail -n 1`
+	 local rate=`echo $speed | awk '{printf $8"\n"}'`
+	 local Total=0
+	 case $rate in
+        	 H/s)
+                	 Total=`echo $speed | awk '{printf $7/1000}'`
+         ;;
+         	kH/s)
+                	 Total=`echo $speed | awk '{printf("%.f\n", $7)}'`
+         ;;
+         	MH/s)
+                	 Total=`echo $speed | awk '{printf("%.f\n", $7*1000)}'`
+         ;;
+         *)
+                 	 Total=0
+         ;;
+	 esac
+	 echo $Total
 }
 
 get_log_time_diff(){
