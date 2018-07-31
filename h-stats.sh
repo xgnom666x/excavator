@@ -85,7 +85,7 @@ if [ "$diffTime" -lt "$maxDelay" ]; then
         local temp=$(get_nvidia_cards_temp)     # cards temp
         local fan=$(get_nvidia_cards_fan)               # cards fan
         local uptime=$(get_miner_uptime)        # miner uptime
-        local algo=$(cat $LOG_NAME | grep -a "add" | awk '{printf $4"\n"}')                 # algo
+        local algo=$(cat $LOG_NAME | head -n 20 | grep -a "add" | awk '{printf $4"\n"}')                 # algo
 
         # A/R shares by pool
         local ac=`cat $LOG_NAME | grep -c "accepted"`
